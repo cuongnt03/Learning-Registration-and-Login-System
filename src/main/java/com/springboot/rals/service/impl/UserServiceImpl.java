@@ -5,6 +5,8 @@ import com.springboot.rals.model.User;
 import com.springboot.rals.repository.UserRepository;
 import com.springboot.rals.service.UserService;
 import com.springboot.rals.web.dto.UserRegistrationDto;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
