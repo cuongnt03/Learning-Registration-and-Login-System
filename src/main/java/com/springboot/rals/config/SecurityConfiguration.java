@@ -16,6 +16,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
+    private UserDetailsService userDetailsService;
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -28,13 +29,18 @@ public class SecurityConfiguration {
                         .requestMatchers("/registration/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form
-                        .loginPage("/login").permitAll()
-                        .loginProcessingUrl("/login").permitAll())
+                        .loginPage("/login").permitAll())
                 .logout(logout -> logout
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login?logout").permitAll());
         return http.build();
+    }
+
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
     }
 }
