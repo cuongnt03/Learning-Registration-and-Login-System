@@ -41,7 +41,7 @@
             </div>
             <div class="card-body">
                 <form method="post" role="form"
-                      th:action="@{/registration}"
+                      th:action="@{/registration/save}"
                       th:object="${user}"
                 > <!-- th:object: lay attribute duoc gui tu controller -->
                     <div class="form-group mb-3">
@@ -53,6 +53,7 @@
                                 placeholder="Enter first name"
                                 th:field="*{firstName}"
                                 type="text"
+                                required
                         />
                         <p th:errors = "*{firstName}" class="text-danger"
                            th:if="${#fields.hasErrors('firstName')}"></p>
@@ -67,6 +68,7 @@
                                 placeholder="Enter last name"
                                 th:field="*{lastName}"
                                 type="text"
+                                required
                         />
                         <p th:errors = "*{lastName}" class="text-danger"
                            th:if="${#fields.hasErrors('lastName')}"></p>
@@ -81,6 +83,7 @@
                                 placeholder="Enter email address"
                                 th:field="*{email}"
                                 type="email"
+                                required
                         />
                         <p th:errors = "*{email}" class="text-danger"
                            th:if="${#fields.hasErrors('email')}"></p>
@@ -95,6 +98,7 @@
                                 placeholder="Enter password"
                                 th:field="*{password}"
                                 type="password"
+                                required
                         />
                         <p th:errors = "*{password}" class="text-danger"
                            th:if="${#fields.hasErrors('password')}"></p>
